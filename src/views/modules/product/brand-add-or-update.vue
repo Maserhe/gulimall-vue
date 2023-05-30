@@ -8,7 +8,8 @@
       <el-input v-model="dataForm.name" placeholder="品牌名"></el-input>
     </el-form-item>
     <el-form-item label="品牌logo地址" prop="logo">
-      <el-input v-model="dataForm.logo" placeholder="品牌logo地址"></el-input>
+      <!-- <el-input v-model="dataForm.logo" placeholder="品牌logo地址"></el-input> -->
+      <single-upload v-model="dataForm.logo"></single-upload>
     </el-form-item>
     <el-form-item label="介绍" prop="descript">
       <el-input v-model="dataForm.descript" placeholder="介绍"></el-input>
@@ -16,15 +17,17 @@
     <el-form-item label="显示状态" prop="showStatus">
       <el-switch
         v-model="dataForm.showStatus"
+        :inactive-value="0"
+        :active-value="1"
         active-color="#13ce66"
         inactive-color="#ff4949">
       </el-switch>
     </el-form-item>
     <el-form-item label="检索首字母" prop="firstLetter">
-      <el-input v-model="dataForm.firstLetter" placeholder="检索首字母"></el-input>
+      <el-input v-model="dataForm.firstLetter" placeholder="检索首字母" maxlength="1" minlength="1"></el-input>
     </el-form-item>
     <el-form-item label="排序" prop="sort">
-      <el-input v-model="dataForm.sort" placeholder="排序"></el-input>
+      <el-input v-model="dataForm.sort" placeholder="排序" type="number"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -35,7 +38,9 @@
 </template>
 
 <script>
+import singleUpload from '@/components/upload/singleUpload.vue'
   export default {
+  components: { singleUpload },
     data () {
       return {
         visible: false,
